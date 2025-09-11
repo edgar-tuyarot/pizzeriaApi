@@ -5,7 +5,6 @@ import org.example.db.Database;
 import org.example.model.Pizza;
 
 import java.sql.Connection;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,12 +21,14 @@ public class Main {
                 System.out.println("No se pudo guardar la pizza");
             }
 
+            dao.listar();
 
 
 
         } catch (Exception e) {
             System.out.println("Error al conectar: " + e.getMessage());
         }
+
     }
 }
 
