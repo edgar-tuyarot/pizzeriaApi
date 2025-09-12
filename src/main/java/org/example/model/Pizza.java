@@ -1,7 +1,7 @@
 package org.example.model;
 import lombok.*;
 
-
+@NoArgsConstructor
 @Getter @Setter
 public class Pizza {
     private int id;
