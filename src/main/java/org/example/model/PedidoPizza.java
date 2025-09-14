@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PedidoPizza {
+    private int id;
     private int pedidoId;
     private int pizzaId;
     private int cantidad;

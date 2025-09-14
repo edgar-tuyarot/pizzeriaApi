@@ -24,7 +24,7 @@ public class PedidoDAO {
                 Pedido pedido = new Pedido(
                         rs.getInt("id"),
                         rs.getTimestamp("fecha"),
-                        rs.getInt("clienteId")
+                        rs.getInt("cliente_id")
                 );
                 pedidos.add(pedido);
             }
@@ -38,14 +38,12 @@ public class PedidoDAO {
 
 
     public Pedido guardar(Pedido pedido) {
-        String sql = "INSERT INTO pedidos (fecha, clientId) VALUES (?,?)";
+        String sql = "INSERT INTO pedidos (fecha, cliente_id) VALUES (?,?)";
 
         try (Connection conn = Database.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
-            stmt.setInt(1, pedido.getId());
-            stmt.setTimestamp(2, pedido.getFecha());
-            stmt.setInt(3, pedido.getClienteId());
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setTimestamp(1, pedido.getFecha());
+            stmt.setInt(2, pedido.getCliente_id());
 
             int filas = stmt.executeUpdate();
 
@@ -53,7 +51,7 @@ public class PedidoDAO {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
                         int idGenerado = rs.getInt(1);
-                        return new Pedido(idGenerado, pedido.getFecha(), pedido.getClienteId());
+                        return new Pedido(idGenerado, pedido.getFecha(), pedido.getCliente_id());
                     }
                 }
             }
@@ -71,7 +69,7 @@ public class PedidoDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, pedido.getId());
             stmt.setTimestamp(2, pedido.getFecha());
-            stmt.setInt(3, pedido.getClienteId());
+            stmt.setInt(3, pedido.getCliente_id());
             stmt.setInt(4, pedido.getId());
             stmt.executeUpdate();
             return pedido;
@@ -96,7 +94,7 @@ public class PedidoDAO {
                     Pedido pedido = new Pedido();
                     pedido.setId(rs.getInt("id"));
                     pedido.setFecha(rs.getTimestamp("fecha"));
-                    pedido.setClienteId(rs.getInt("clienteId"));
+                    pedido.setCliente_id(rs.getInt("clienteId"));
                     return pedido;
                 }
             }
