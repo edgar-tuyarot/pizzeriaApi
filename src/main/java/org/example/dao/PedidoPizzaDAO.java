@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class PedidoPizzaDAO {
 
     public PedidoPizza guardar(PedidoPizza pp) {
-        String sql = "INSERT INTO pedido_pizzas (pedido_id, pizza_id, cantidad) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO et_pedido_pizzas (pedido_id, pizza_id, cantidad) VALUES (?, ?, ?)";
         System.out.println(pp);
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -46,7 +46,7 @@ public class PedidoPizzaDAO {
 
     public List<PedidoPizza> listar(){
         List<PedidoPizza> pedidosPizzas = new ArrayList<>();
-        String sql = "SELECT * FROM pedido_pizzas";
+        String sql = "SELECT * FROM et_pedido_pizzas";
 
         try  (Connection conn = Database.connect();
               Statement stmt = conn.createStatement();
@@ -71,7 +71,7 @@ public class PedidoPizzaDAO {
     }
 
     public PedidoPizza actualizar(PedidoPizza pedidoPizza){
-        String sql = "UPDATE pedido_pizzas SET nombre = ?, telefono = ?, direccion = ? WHERE id = ?";
+        String sql = "UPDATE et_pedido_pizzas SET nombre = ?, telefono = ?, direccion = ? WHERE id = ?";
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, pedidoPizza.getId());
@@ -89,7 +89,7 @@ public class PedidoPizzaDAO {
     }
 
     public PedidoPizza buscarPorId (int id) {
-        String sql = "SELECT * FROM pedido_pizzas WHERE id = ?";
+        String sql = "SELECT * FROM et_pedido_pizzas WHERE id = ?";
 
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -117,7 +117,7 @@ public class PedidoPizzaDAO {
 
     public boolean eliminar(int id){
 
-        String sql = "DELETE FROM pedido_pizzas WHERE id = ?";
+        String sql = "DELETE FROM et_pedido_pizzas WHERE id = ?";
 
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
