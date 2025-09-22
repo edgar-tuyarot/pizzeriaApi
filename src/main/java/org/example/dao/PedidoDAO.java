@@ -14,7 +14,7 @@ public class PedidoDAO {
 
     public List<Pedido> listar() {
         List<Pedido> pedidos = new ArrayList<>();
-        String sql = "SELECT * FROM clientes ORDER BY id ASC";
+        String sql = "SELECT * FROM et_pedidos ORDER BY id ASC";
 
         try (Connection conn = Database.connect();
              Statement stmt = conn.createStatement();
@@ -38,7 +38,7 @@ public class PedidoDAO {
 
 
     public Pedido guardar(Pedido pedido) {
-        String sql = "INSERT INTO pedidos (fecha, cliente_id) VALUES (?,?)";
+        String sql = "INSERT INTO et_pedidos (fecha, cliente_id) VALUES (?,?)";
 
         try (Connection conn = Database.connect();
             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -64,7 +64,7 @@ public class PedidoDAO {
     }
 
     public Pedido actualizar(Pedido pedido){
-        String sql = "UPDATE pedidos SET nombre = ?, telefono = ?, direccion = ? WHERE id = ?";
+        String sql = "UPDATE et_pedidos SET nombre = ?, telefono = ?, direccion = ? WHERE id = ?";
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, pedido.getId());

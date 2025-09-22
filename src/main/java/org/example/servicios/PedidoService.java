@@ -16,7 +16,7 @@ public class PedidoService {
         Pedido pedido = pedidoDAO.guardar(new Pedido(0, null, clienteGuardado.getId()));
 
         for (PedidoPizza pp : pizzas) {
-            pp.setPedidoId(pedido.getId());
+            pp.setPedido_id(pedido.getId());
             pedidoPizzaDAO.guardar(pp);
         }
 

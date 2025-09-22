@@ -14,10 +14,10 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class PedidoPizza {
     private int id;
-    @NonNull @NotBlank
-    private int pedidoId;
-    @NonNull @NotBlank
-    private int pizzaId;
+    @NonNull
+    private int pedido_id;
+    @NonNull
+    private int pizza_id;
     @NotNull(message = "La cantidad es obligatoria")
     @Min(value = 1, message = "La cantidad debe ser al menos 1")
     private int cantidad;
