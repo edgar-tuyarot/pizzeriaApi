@@ -1,4 +1,5 @@
 package org.example.controller;
+import jakarta.validation.Valid;
 import org.example.dao.PedidoDAO;
 import org.example.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,12 @@ public class PedidoController {
 
     // POST /api/pizzas
     @PostMapping
-    public Pedido guardar(@RequestBody Pedido pedido) {
+    public Pedido guardar(@Valid @RequestBody Pedido pedido) {
 
         return pedidoDAO.guardar(pedido);
     }
     @PutMapping("/{id}")
-    public Pedido actualizar(@PathVariable int id, @RequestBody Pedido pedido) {
+    public Pedido actualizar(@PathVariable int id,@Valid @RequestBody Pedido pedido) {
         pedido.setId(id);
         return pedidoDAO.actualizar(pedido);
     }

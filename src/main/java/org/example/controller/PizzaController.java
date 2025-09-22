@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import jakarta.validation.Valid;
 import org.example.dao.PizzaDAO;
 import org.example.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,12 @@ public class PizzaController {
 
     // POST /api/pizzas
     @PostMapping
-    public Pizza guardar(@RequestBody Pizza pizza) {
+    public Pizza guardar(@Valid @RequestBody Pizza pizza) {
 
         return pizzaDAO.guardar(pizza);
     }
     @PutMapping("/{id}")
-    public Pizza actualizar(@PathVariable int id, @RequestBody Pizza pizza) {
+    public Pizza actualizar(@PathVariable int id,@Valid @RequestBody Pizza pizza) {
         pizza.setId(id);
         return pizzaDAO.actualizar(pizza);
     }

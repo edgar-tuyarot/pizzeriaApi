@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import jakarta.validation.Valid;
 import org.example.dao.ClienteDAO;
 import org.example.dao.PizzaDAO;
 import org.example.model.Cliente;
@@ -11,6 +12,7 @@ import java.util.List;
 
 
 @RequestMapping("/api/clientes")
+
 @RestController
 public class ClienteController {
 
@@ -29,12 +31,12 @@ public class ClienteController {
 
     // POST /api/pizzas
     @PostMapping
-    public Cliente guardar(@RequestBody Cliente cliente) {
+    public Cliente guardar(@Valid @RequestBody Cliente cliente) {
 
         return clienteDAO.guardar(cliente);
     }
     @PutMapping("/{id}")
-    public Cliente actualizar(@PathVariable int id, @RequestBody Cliente cliente) {
+    public Cliente actualizar(@PathVariable int id, @Valid @RequestBody Cliente cliente) {
         cliente.setId(id);
         return clienteDAO.actualizar(cliente);
     }

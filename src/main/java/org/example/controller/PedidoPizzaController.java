@@ -1,6 +1,7 @@
 package org.example.controller;
 
 
+import jakarta.validation.Valid;
 import org.example.dao.PedidoPizzaDAO;
 import org.example.model.Pedido;
 import org.example.model.PedidoPizza;
@@ -28,11 +29,11 @@ public class PedidoPizzaController {
 
     // POST /api/pedidos-pizzas
     @PostMapping
-    public PedidoPizza guardar(@RequestBody PedidoPizza pedidoPizza) {
+    public PedidoPizza guardar(@Valid @RequestBody PedidoPizza pedidoPizza) {
         return pedidoPizzaDAO.guardar(pedidoPizza);
     }
     @PutMapping("/{id}")
-    public PedidoPizza actualizar(@PathVariable int id, @RequestBody PedidoPizza pedidoPizza) {
+    public PedidoPizza actualizar(@PathVariable int id,@Valid @RequestBody PedidoPizza pedidoPizza) {
         pedidoPizza.setId(id);
         return pedidoPizzaDAO.actualizar(pedidoPizza);
     }

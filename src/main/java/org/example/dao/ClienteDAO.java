@@ -14,7 +14,7 @@ public class ClienteDAO {
 
     public List<Cliente> listar() {
         List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT * FROM clientes ORDER BY id ASC";
+        String sql = "SELECT * FROM et_clientes ORDER BY id ASC";
 
         try (Connection conn = Database.connect();
              Statement stmt = conn.createStatement();
@@ -39,7 +39,7 @@ public class ClienteDAO {
 
 
     public Cliente guardar(Cliente cliente) {
-        String sql = "INSERT INTO clientes (nombre, telefono, direccion) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO et_clientes (nombre, telefono, direccion) VALUES (?, ?, ?)";
 
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -67,7 +67,7 @@ public class ClienteDAO {
     }
 
     public Cliente actualizar(Cliente cliente){
-        String sql = "UPDATE clientes SET nombre = ?, telefono = ?, direccion = ? WHERE id = ?";
+        String sql = "UPDATE et_clientes SET nombre = ?, telefono = ?, direccion = ? WHERE id = ?";
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cliente.getNombre());
@@ -85,7 +85,7 @@ public class ClienteDAO {
     }
 
     public Cliente buscarPorId (int id) {
-        String sql = "SELECT * FROM clientes WHERE id = ?";
+        String sql = "SELECT * FROM et_clientes WHERE id = ?";
 
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -113,7 +113,7 @@ public class ClienteDAO {
 
     public boolean eliminar(int id){
 
-        String sql = "DELETE FROM clientes WHERE id = ?";
+        String sql = "DELETE FROM et_clientes WHERE id = ?";
 
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
